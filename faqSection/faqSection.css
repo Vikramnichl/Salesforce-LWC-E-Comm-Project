@@ -1,0 +1,123 @@
+/* User Carousel Starts */
+
+.user-carousel-container {
+    margin: 60px 75px;
+}
+
+.user-carousel-holder {
+    display: flex;
+    min-height: 550px;
+    padding: 20px 70px 60px;
+    flex-direction: column;
+    border-radius: 16px;
+    background: #F1F1F1;
+    width: max-content;
+    position: relative;
+}
+.user-carousel-holder::after{
+    content: '';
+    position: absolute;
+    bottom: 10px;
+    background: linear-gradient(180deg, rgba(241, 241, 241, 0.00) 0%, #F1F1F1 100%);
+    min-width: 780px;
+    width: 100%;
+    height: 120px;
+    left: 0px;
+    pointer-events:none;
+}
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 40px auto 20px;
+    align-items: center;
+}
+
+.user-header h4 {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 34px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+.user-header p {
+    color: #565656;
+    text-align: right;
+    font-family: "URWDIN";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.07px;
+    text-decoration-line: underline;
+    text-transform: capitalize;
+    cursor: pointer;
+}
+
+.accord-section {
+    width: 640px;
+    border-bottom: 1px solid #B8B8B8;
+}
+
+.accordion {
+    background-color: #F1F1F1;
+    cursor: pointer;
+    padding: 35px 0;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    transition: 0.4s ease;
+    display: flex;
+    justify-content: space-between;
+}
+
+.accordion span {
+    transform: rotate(0deg);
+    transition: transform 0.4s ease; /* Add transition effect */
+    pointer-events: none;
+}
+
+.accordion.active span {
+    transform: rotate(180deg);
+}
+
+.accordion p{
+    color: #002B45;
+    font-family: "URWDIN";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0.09px;
+    pointer-events: none;
+}
+
+.panel {
+    padding: 0;
+    display: block;
+    background-color: #f1f1f1;
+    overflow: hidden;
+}
+
+.panel-content {
+    color: #555;
+    font-family: "URWDIN";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    letter-spacing: 0.08px;
+    padding: 0px 0 25px;
+}
+
+.logo-arrow{
+    --slds-c-icon-color-foreground-default: #002B45;
+}
+
+/* User Carousel Ends */

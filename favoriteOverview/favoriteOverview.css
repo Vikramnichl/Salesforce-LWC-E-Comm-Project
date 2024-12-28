@@ -1,0 +1,165 @@
+/* Favorite Mini Starts */
+.account-container {
+    min-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+}
+
+.left-block {
+    min-width: 342px;
+    width: 25%;
+    height: auto;
+    background-color: #FFFFFF;
+}
+
+.right-block {
+    min-width: 1098px;
+    width: 75%;
+    height: auto;
+    background-color: #F1F1F1;
+    padding-bottom: 1 rem;
+}
+
+
+.backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 7, 7, 0.5);
+    z-index: 15000;
+}
+
+.spinshow::after {
+    position: absolute;
+    content: "Please wait while loading";
+    width: 100%;
+    text-align: center;
+    top: calc(50% + 3em);
+    font-weight: bold;
+}
+
+
+
+.fav-mini-block {
+    min-width: 983px;
+    width: 94%;
+    height: 299px;
+    border-radius: 16px;
+    background: #FFF;
+    margin: 20px 40px;
+    padding-bottom: 20px;
+}
+
+.fav-header {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 28px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+    padding: 30px 30px 15px;
+}
+
+.multi-fav-view {
+    display: flex;
+    padding-left: 20px;
+    align-items: center;
+    overflow: hidden;
+}
+
+.single-fav-view {
+    display: flex;
+    width: 260px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    border-radius: 16px;
+    background: #FFF;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.15);
+    margin: 10px 5px 10px 15px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.mini-fav-name {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 20px;
+    letter-spacing: 0.72px;
+    text-transform: uppercase;
+}
+
+.mini-image-holder {
+    display: flex;
+    gap: 15px;
+}
+
+.mini-image-view {
+    width: 45px;
+    height: 45px;
+    background-color: #FFFFFF;
+}
+.mini-image-view img {
+    width: inherit;
+    height: inherit;
+    object-fit: contain;
+    background-color: #f1f1f1;
+}
+
+.mini-fav-date {
+    margin: 5px auto 0;
+    color: #668804;
+    text-align: center;
+    font-family: "URWDIN";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+}
+
+.fav-mini-footer {
+    display: flex;
+    justify-content: right;
+    margin-top: 1rem;
+    padding-right: 10px;
+}
+
+.fav-mini-footer a {
+    color: #002B45;
+    text-align: right;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 16px;
+    letter-spacing: 0.64px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    padding-right: 20px;
+}
+
+.fav-remaining-count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fav-remaining-text {
+    color: #555;
+    font-family: "URWDIN";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+/* Favorite Mini Ends */

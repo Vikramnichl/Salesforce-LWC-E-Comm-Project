@@ -1,0 +1,124 @@
+<template>
+    
+    <div class="account-container">
+        <template if:false={isAdmin}>
+            <div class="left-block">
+                <c-my-account-left-sidebar></c-my-account-left-sidebar>
+            </div>
+
+            <div class="right-block">
+                <div class="fav-container-view">
+                    <div class="fav-manage-edit">
+                        <div class="fav-manage-head">
+                            <h5>Favorites</h5>
+                            <p style="align-content: center;">{favoriteLists.length} Results</p>
+                        </div>
+                        <div style="align-content: center;">
+                            <p class="view-all-link" onclick={handleCreateFavoritesClick}>Create Favorites</p>
+                        </div>
+                    </div>
+                    <div class="fav-holder-block">
+                        <!-- Loop through each favorite list -->
+                        <template for:each={favoriteLists} for:item="list">
+                            <div key={list.Id} class="fav-block">
+
+                                <div class="slds-p-top_small">
+                                    <a data-id={list.Id} onclick={handleListClick}>
+                                        <h6 class="fav-title">{list.ListName__c}</h6>
+                                    </a>
+                                </div>
+
+                                <!-- Loop through each favorite item in the list -->
+                                <div class="fav-items-view">
+                                    <template for:each={list.Favorite_Items__r} for:item="item" for:index="index">
+                                        <!-- Use the computed visibility flag -->
+                                        <template if:true={item.isVisible}>
+                                            <div key={item.Id} class="fav-image-view">
+                                                <a data-id={list.Id} onclick={handleListClick}>
+                                                    <img src={item.displayUrl} alt="Fav Image" />
+                                                </a>
+                                            </div>
+                                        </template>
+                                    </template>
+
+                                    <!-- Show remaining image count if more than 3 items -->
+                                    <template if:true={list.remainingCount}>
+                                        <div class="fav-image-view remaining-count-box">
+                                            <a data-id={list.Id} onclick={handleListClick}>
+                                                <span class="remaining-count-text">+{list.remainingCount}</span>
+                                            </a>
+                                        </div>
+                                    </template>
+                                </div>
+
+                                <!-- Favorite list last updated date -->
+                                <div class="fav-date-range">
+                                    <p class="fav-last-update">Last Update: {list.formattedLastModifiedDate}</p>
+                                </div>
+
+                                <!-- Actions for each favorite list -->
+                                <div class="fav-footer">
+                                    <p class="fav-link-button" onclick={handleDuplicateClick} data-id={list.Id}>
+                                        Duplicate</p>
+                                    <p class="fav-link-button" onclick={handleEditClick} data-id={list.Id}>Edit</p>
+                                    <p class="fav-link-button" onclick={toggleModal} data-id={list.Id}>Delete</p>
+                                </div>
+
+                            </div>
+                        </template>
+                    </div>
+                </div>
+
+                <!-- Modal for Delete confirmation -->
+                <!-- Integrated Modal -->
+                <template if:true={showModal}>
+                    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                        class="slds-modal pop-container slds-fade-in-open">
+                        <div class="slds-modal__container pop-holder">
+                            <div class="slds-modal__header title-modal-view">
+                                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate head-modal-text"
+                                    tabindex="-1">Delete
+                                    Favorite list?</h1>
+
+                                <button class="slds-button slds-button_icon slds-modal__close close-modal-custom" onclick={handleCloseModal}>
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                            </div>
+
+                            <div class="slds-modal__content body-modal-content" id="modal-content-id-1">
+                                <p>Favorite list will be deleted!</p>
+                            </div>
+
+                            <div class="footer-modal-content slds-modal__footer">
+                                <button class="slds-button slds-button_brand pop-dark" onclick={handleDelete}>OK</button>
+                                <button class="slds-button slds-button_neutral pop-lite" onclick={handleCloseModal}
+                    aria-label="Cancel and close">Cancel</button>
+
+                            </div>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+                </template>
+                <template if:true={showToastComponent}>
+                    <c-custom-toast message={toastMessage} variant={toastVariant}></c-custom-toast>
+                </template>
+                <!-- Loading Spinner -->
+                <template if:true={showSpinner}>
+                    <div class="backdrop">
+                        <lightning-spinner class="spinshow" size="large" variant="brand" alternative-text="Loading">
+                        </lightning-spinner>
+                    </div>
+                </template>
+            </div>
+        </template>
+
+        <template if:true={isAdmin}>
+            <div class="slds-box">
+                <p>Admin account details not available.</p>
+            </div>
+        </template>
+    </div>
+</template>

@@ -1,0 +1,179 @@
+/* Favorite Edit Page Starts */
+.account-container {
+    min-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+}
+
+.left-block {
+    min-width: 342px;
+    width: 25%;
+    height: auto;
+    background-color: #FFFFFF;
+}
+
+.right-block {
+    min-width: 1098px;
+    width: 75%;
+    height: auto;
+    background-color: #F1F1F1;
+    padding-bottom: 1 rem;
+}
+.input-error {
+    border-color: red;
+}
+
+
+.backdrop {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(8, 7, 7, 0.5);
+    z-index: 15000;
+}
+
+.spinshow::after {
+    position: absolute;
+    content: "Please wait while loading";
+    width: 100%;
+    text-align: center;
+    top: calc(50% + 3em);
+    font-weight: bold;
+}
+
+.fav-edit-view {
+    min-width: 983px;
+    width: 94%;
+    height: auto;
+    border-radius: 16px;
+    background: #FFF;
+    margin: 40px;
+    padding-bottom: 20px;
+}
+
+.fav-edit-manage-edit {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 30px 25px;
+}
+
+.fav-edit-manage-head h5 {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 28px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.fav-new-block {
+    padding: 10px 30px 25px;
+}
+
+.title-fav {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+
+.fav-input-half input {
+    width: 451px;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid#DDD;
+    background: #FFF;
+    color: #565656;
+    font-family: "URWDIN";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.07px;
+    padding: 15px;
+}
+
+.fav-input-full input {
+    width: 923px;
+    height: 50px;
+    border-radius: 12px;
+    border: 1px solid#DDD;
+    background: #FFF;
+    color: #565656;
+    font-family: "URWDIN";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.07px;
+    padding: 15px;
+}
+
+.fav-error-message {
+    color: #EB1400;
+    font-family: "URWDIN";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.06px;
+}
+
+.fav-footer-block {
+    display: flex;
+    gap: 15px;
+    padding-top: 10px;
+}
+
+.fav-footer-block button {
+    padding: 16px 40px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.fav-dark {
+    background: #002B45;
+    color: #FFF;
+    text-align: center;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border: 2px solid #002B45;
+}
+
+.fav-lite {
+    background: #ffffff;
+    color: #002B45;
+    text-align: center;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border: 2px solid #002B45;
+}
+
+/* Favorite Edit Page Ends */
+.slds-button:disabled {
+    background-color: #d8d8d8; /* Light grey background */
+    color: #221f1f; /* Lighter text color */
+    border-color: #d8d8d8; /* Match border to the background */
+    cursor: not-allowed; /* Change cursor to show it's not clickable */
+}

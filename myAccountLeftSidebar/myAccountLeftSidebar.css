@@ -1,0 +1,351 @@
+.account-container {
+    min-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+}
+
+.left-block {
+    min-width: 342px;
+    width: 25%;
+    height: 2197px;
+    background-color: #FFFFFF;
+}
+
+.right-block {
+    min-width: 1098px;
+    width: 75%;
+    height: auto;
+    background-color: #F1F1F1;
+    padding-bottom: 1 rem;
+}
+
+.profile-holder {
+    margin-bottom: 40px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 100px;
+    background-color: lightgray;
+    margin: 20px auto;
+    position: relative;
+}
+
+.pro-edit {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.profile-name {
+    text-align: center;
+}
+
+.profile-name h3 {
+    font-size: 22px;
+    font-family: 'URWDIN';
+    line-height: 30px;
+    color: #002b45;
+    margin-top: 15px;
+}
+
+.profile-name p {
+    font-size: 14px;
+    font-family: 'URWDIN';
+    line-height: 20px;
+    color: #002b45;
+    margin-top: 2px;
+}
+
+.primary-list {
+    border-bottom: 1px solid #DDD;
+}
+
+.side-menu-holder {
+    margin: 30px;
+}
+
+.primary-list li {
+    margin-bottom: 20px;
+}
+
+.primary-list li a {
+    color: #002B45;
+    font-family: "URWDIN";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0.09px;
+    text-decoration: none;
+}
+
+.primary-list li a:hover {
+    border-bottom: 2px solid #002B45;
+}
+
+.secondary-list {
+    margin-top: 30px;
+}
+
+.secondary-list li {
+    margin-bottom: 15px;
+}
+
+.secondary-list li a {
+    color: rgba(0, 43, 69, 0.80);
+    font-family: "URWDIN";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 21px;
+    letter-spacing: 0.07px;
+    text-decoration: none;
+}
+
+.secondary-list li a:hover {
+    border-bottom: 2px solid rgba(0, 43, 69, 0.80);
+}
+
+
+.personal-title {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 38px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin: 40px;
+}
+
+.info-container-view {
+    min-width: 983px;
+    width: 94%;
+    height: 497px;
+    border-radius: 16px;
+    background: #FFF;
+    margin: 40px;
+    margin-bottom: 20px;
+}
+
+.head-edit {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+}
+
+.head-edit h5 {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 28px;
+    letter-spacing: 1.3px;
+    text-transform: uppercase;
+}
+
+.head-edit p,
+.view-all-link {
+    color: #002B45;
+    text-align: center;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 16px;
+    letter-spacing: 0.64px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.head-edit p:hover,
+.view-all-link:hover {
+    text-decoration-line: none;
+}
+/* Style for the Edit link */
+.head-edit a {
+    color: #002B45; /* Dark blue color as in the image */
+    font-family: 'St1Medium';
+    font-size: 16px; /* Font size as in your current setup */
+    font-weight: 900;
+    line-height: 16px;
+    letter-spacing: 0.64px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    cursor: pointer;
+    float: right; /* Align to the right */
+}
+
+.head-edit a:hover {
+    text-decoration: none; /* Remove underline on hover */
+    color: #002B45; /* Change color on hover */
+}
+.form-view-block {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.form-split-view {
+    width: 45%;
+    margin-bottom: 30px;
+}
+.form-split-edit{
+    width: 45%;
+    margin-bottom: 10px;
+}
+
+.form-split-view h6,
+.form-edit-label {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 20px;
+    letter-spacing: 0.72px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.form-split-view p {
+    color: #002B45;
+    font-family: "URWDIN";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.info-container-edit {
+    min-width: 983px;
+    width: 94%;
+    height:auto;
+    border-radius: 16px;
+    background: #FFF;
+    margin: 40px;
+    padding-bottom: 20px;
+}
+
+.form-edit-input {
+    border-radius: 12px;
+    border: 1px solid #DDD;
+    background: #FFF;
+    width: 451px;
+    height: 50px;
+    margin-top: 5px;
+    color: #242424;
+}
+a.active {
+    color: #007bff; /* Custom color for the active link */
+    font-weight: bold;
+    text-decoration: underline; /* Optionally, underline the active link */
+}
+/* Address type (e.g. Default Shipping, Default Billing) */
+.add-book-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.address-book-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.error-input-block {
+    border: 1px solid #EB1400;
+}
+.error-hint {
+    color: #EB1400;
+    font-family: "URWDIN";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0.06px;
+}
+.button-password {
+    display: flex;
+    padding: 0px 30px 30px;
+}
+.button-password button {
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    border-radius: 6px;
+    width: 118px;
+    height: 50px;
+    justify-content: center;
+    margin: 0px 10px;
+}
+.save-pass {
+    color: #FFF;
+    background-color: #002B45;
+}
+ 
+.save-pass:hover {
+    color: #FFF;
+    background-color: #000000;
+}
+ 
+.cancel-pass {
+    color: #002B45;
+    border: 2px solid #002B45;
+}
+.cancel-pass:hover {
+    color: #FFFFFF;
+    background-color: #002B45;
+}
+.heading-order {
+    display: flex;
+    margin: 40px;
+    align-items: center;
+}
+
+.heading-order h3 {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 38px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+}
+
+.heading-order p {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 20px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-left: 30px;
+}
+
+.action-block {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 40px;
+}
+
+.primary-list li a.selected {
+    font-weight: bold;
+    color: #002B45;
+    border-bottom: 2px solid #002B45;
+}

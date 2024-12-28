@@ -1,0 +1,192 @@
+<template>
+    <div class="account-container">
+        <template if:false={isAdmin}>
+            <div class="left-block">
+                <c-my-account-left-sidebar selected-menu-item="orders"></c-my-account-left-sidebar>
+            </div>
+
+            <div class="right-block">
+                <div class="f-plp-container-view">
+                    <div class="f-plp-manage-edit">
+                        <div class="f-plp-manage-head">
+                            <h5>{favoriteListName}</h5><br>
+                             <p>Description: {favoriteListDescription}</p>
+                            <p>Last Update: {favoriteListLastModified}</p>
+                        </div>
+                        <div class="f-plp-actions">
+                            <p class="view-all-link">Add All to bag</p>
+                            <p class="view-all-link" onclick={handleDuplicateClick} data-id={recordId}>
+                                        Duplicate</p>
+                            <p class="view-all-link" onclick={handleEditClick} data-id={recordId}>Edit</p>
+                            <p class="view-all-link" onclick={handleDeleteList} data-id={recordId}>Delete</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="fav-list-block">
+                        <div class="fav-detail-block">
+                            <!-- Loop through favoriteItems to display each product -->
+                            <div class="slds-grid slds-wrap slds-gutters">
+                                <!-- Check if favoriteItems has data -->
+                                <template if:true={favoriteItems.length}>
+                                    <template for:each={favoriteItems} for:item="item">
+                                        <div key={item.favItemId}
+                                            class="slds-col slds-size_12-of-12 slds-small-size_6-of-12 slds-medium-size_4-of-12">
+                                            <div class="fav-list-content">
+                                                <!-- Product Image -->
+                                                <template if:true={item.showImage}>
+                                                    <div class="fav-image-linear">
+                                                        <img class="f-plp-image" src={item.displayURL}
+                                                            alt={item.productName} />
+                                                    </div>
+                                                </template>
+                                                <template if:false={item.showImage}>
+                                                    <div class="fav-image-non-linear">
+                                                        <img class="f-plp-image" src={item.displayURL}
+                                                            alt={item.productName} />
+                                                    </div>
+                                                </template>
+                                                <ul class="f-plp-details">
+                                                    <!-- Product Name -->
+                                                    <template if:true={item.trademark}>
+                                                        <li class="f-plp-title">{item.trademark}</li>
+                                                    </template>
+                                                    <template if:false={item.trademark}>
+                                                        <li class="f-plp-title"></li>
+                                                    </template>
+
+                                                    <!-- Product Title -->
+                                                    <li class="f-plp-name">{item.productName}</li>
+
+                                                    <!-- SKU (if available) -->
+                                                    <li class="f-plp-sku">SKU: {item.sku}</li>
+                                                    <!-- Product Cost -->
+                                                    <li class="f-plp-cost">${item.price}</li>
+                                                </ul>
+
+                                                <!-- Stock Status -->
+                                                <template if:true={item.inStock}>
+                                                    <p class="f-plp-stock">IN STOCK</p>
+                                                </template>
+                                                <template if:false={item.inStock}>
+                                                    <p class="f-plp-stock">OUT OF STOCK</p>
+                                                </template>
+
+                                                <ul class="f-plp-link-button">
+                                                    <li class="primary-view">Add To Bag</li>
+                                                    <template if:true={item.showImage}>
+                                                        <li class="secondary-view">EDIT</li>
+                                                        <li class="secondary-view">PREVIEW</li>
+                                                    </template>
+                                                    <li class="secondary-view" data-id={item.favItemId}
+                                                        onclick={handleRemoveItem}>Remove</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </template>
+                                </template>
+                                <template if:false={favoriteItems.length}>
+                                    <p class="no-favorite-text">No favorite items found.</p>
+                                </template>
+                            </div>
+                            <!-- View More Button -->
+                            <div class="view-more-container">
+                                <button class="view-more-button">More</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal for Delete confirmation -->
+                <!-- Integrated Modal -->
+                <!-- <template if:true={showModal}>
+                    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                        class="slds-modal pop-container slds-fade-in-open">
+                        <div class="slds-modal__container pop-holder">
+                            <div class="slds-modal__header title-modal-view">
+                                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate head-modal-text"
+                                    tabindex="-1">Delete
+                                    Favorite list?</h1>
+
+                                <button class="slds-button slds-button_icon slds-modal__close close-modal-custom" onclick={handleCloseModal}>
+                    <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                    </svg>
+                    <span class="slds-assistive-text">Cancel and close</span>
+                </button>
+                            </div>
+
+                            <div class="slds-modal__content body-modal-content" id="modal-content-id-1">
+                                <p>Favorite list will be deleted!</p>
+                            </div>
+
+                            <div class="footer-modal-content slds-modal__footer">
+                                   <button class="slds-button slds-button_brand pop-dark" onclick={handleDelete}>OK</button>
+                                <button class="slds-button slds-button_neutral pop-lite" onclick={handleCloseModal}
+                    aria-label="Cancel and close">Cancel</button>
+                             
+                            </div>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+                </template> -->
+
+                <!-- Single Modal for Delete and Remove -->
+                <template if:true={showModal}>
+                    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01"
+                        class="slds-modal pop-container slds-fade-in-open">
+                        <div class="slds-modal__container pop-holder">
+                            <!-- Modal Header -->
+                            <div class="slds-modal__header title-modal-view">
+                                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate head-modal-text"
+                                    tabindex="-1">
+                                    <template if:true={isDeleteModal}>Delete Favorite List?</template>
+                                    <template if:true={isRemoveModal}>Remove Favorite Item?</template>
+                                </h1>
+                                <button class="slds-button slds-button_icon slds-modal__close close-modal-custom"
+                        onclick={handleCloseModal}>
+                        <svg class="slds-button__icon slds-button__icon_large" aria-hidden="true">
+                            <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Cancel and close</span>
+                    </button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="slds-modal__content body-modal-content" id="modal-content-id-1">
+                                <template if:true={isDeleteModal}>
+                                    <p>Favorite list will be deleted!</p>
+                                </template>
+                                <template if:true={isRemoveModal}>
+                                    <p>Are you want to remove the product from the favorite list?</p>
+                                </template>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="footer-modal-content slds-modal__footer">
+                                <button class="slds-button slds-button_brand pop-dark" onclick={handleModalConfirm}>OK</button>
+                                <button class="slds-button slds-button_neutral pop-lite" onclick={handleCloseModal}
+                        aria-label="Cancel and close">Cancel</button>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+                </template>
+                 <template if:true={showToastComponent}>
+                                <c-custom-toast message={toastMessage} variant={toastVariant}></c-custom-toast>
+                            </template>
+
+                <template if:true={showSpinner}>
+                    <div class="backdrop">
+                        <lightning-spinner class="spinshow" size="large" variant="brand" alternative-text="Loading">
+                        </lightning-spinner>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <!-- Admin user message -->
+        <template if:true={isAdmin}>
+            <div class="slds-box">
+                <p>Admin account details not available.</p>
+            </div>
+        </template>
+    </div>
+</template>
