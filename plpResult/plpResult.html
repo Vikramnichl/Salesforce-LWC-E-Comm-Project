@@ -1,0 +1,158 @@
+<template>
+    <!-- Top Banner -->
+   
+        <div class="topbanner">
+            <div class="topbanner-side">The Holiday Gift Guide</div>
+            <div class="topbanner-aside">
+                <h3>Find A Store</h3>
+                <h3>Corporate Sales</h3>
+                <h3>USA/EN</h3>
+            </div>
+        </div>
+
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="nav-brand-img">
+                <img src="https://www.yeti.com/on/demandware.static/Sites-Yeti_US-Site/-/default/dw4c95a24a/images/logo.svg" alt="Yeti Logo">
+            </div>
+
+            <div class="nav-menu">
+                <a href="#" class="a">Shop</a>
+                <a href="#" class="a">Gifts</a>
+                <a href="#" class="a">Custom</a>
+                <a href="#" class="a">Stories</a>
+            </div>
+
+            <!-- Search Box -->
+            <div class="nav-serch">
+                <lightning-input class="nav-serch-btn" type="search" name="search" placeholder="Search"
+                    onchange={handleSearchChange}>
+                    <lightning-icon icon-name="utility:search" size="small" class="search-icon"></lightning-icon>
+                </lightning-input>
+            </div>
+
+            <div class="icon-container">
+                <lightning-icon icon-name="utility:cart" alternative-text="Cart Icon" size="small"></lightning-icon>
+                <lightning-icon icon-name="utility:user" alternative-text="Account Icon" size="small"></lightning-icon>
+                <lightning-icon icon-name="utility:menu" alternative-text="Menu Icon" size="small"></lightning-icon>
+            </div>
+        </div>
+    
+    <!-- <template if:false={isFavFilterOpen}> -->
+        <!-- Main Content -->
+        <main>
+            <div class="product-card-container">
+                <div class="title-sort-container">
+                    <div class="title-section">
+                        <h1>HYDRATION</h1>
+                        <span>{productCount} RESULTS</span>
+                    </div>
+                    <div class="filter-sort">
+                        <lightning-combobox value={selectedSort} options={sortOptions} onchange={handleSortChange}>
+                        </lightning-combobox>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Product Cards Container -->
+                <div class="product-container">
+                    <!-- Display products or No Product Message -->
+                    <template if:true={filteredProducts}>
+                        <template for:each={filteredProducts} for:item="product">
+                            <div key={product.Id} class="product-card">
+                                <!-- Product Image Section -->
+                                <div class="image-container" data-main-image={product.Image_Url__c}  onclick={handleProductClick} 
+                                data-id={product.Id}
+                                    data-hover-image={product.Hover_Image__c}>
+                                    <img src={product.Image_Url__c} alt={product.Name} class="main-image"
+                                   >
+                                </div>
+                                <!-- onmouseover={hoverImage} onmouseout={resetImage} -->
+                                <div class="favorite-icon-container">
+                                    <button class="favorite-button" onclick={openFavFilter} data-id={product.Id}>
+                                  <lightning-icon icon-name="utility:favorite" size="small" alternative-text="Add to Favorites"></lightning-icon>
+                                     </button>
+                                </div>
+
+                                <div class="product-info">
+                                    <h3 class="product-name"  onclick={handleProductClick} data-id={product.Id}>{product.Name}</h3>
+                                    <p class="product-description">{product.Description__c}</p>
+                                    <div class="price-section">
+                                        <span class="original-price" if:true={product.Original_Price__c}>
+                                        ${product.Original_Price__c}
+                                    </span>
+                                        <span class="discounted-price" if:true={product.Discounted_Price__c}>
+                                        ${product.Discounted_Price__c}
+                                    </span>
+                                    </div>
+                                    <div class="rating-section">
+                                        <span class="rating">{product.Rating__c} ★</span>
+                                        <span class="review-count">({product.Review_Count__c})</span>
+                                    </div>
+                                    <a href="#" class="buy-now">Sign in to Buy</a>
+                                </div>
+                            </div>
+                        </template>
+                    </template>
+                    
+                </div>
+            </div>
+        </main>
+    <!-- </template> -->
+
+    <template if:true={noResults}>
+        <div class="no-results-container">
+            <div class="no-results-content">
+                <img
+                                     src="https://via.placeholder.com/150?text=No+Products"
+                                     alt="No Products"
+                                       class="no-results-image">
+                <h2 class="no-results-heading">Oops! No products found</h2>
+                <p class="no-results-description">We couldn’t find any products matching your search
+                    term
+                    "<strong>{searchTerm}</strong>".</p>
+                <button class="reset-button" onclick={resetFilters}>Reset Filters</button>
+            </div>
+        </div>
+    </template>
+     <template if:true={showToastComponent}>
+                    <c-custom-toast message={toastMessage} variant={toastVariant}></c-custom-toast>
+                </template>
+
+    <template if:true={isFavFilterOpen}>
+        <c-favorites-flyout is-filter-open={isFavFilterOpen} product-id={selectedProductId}
+            onclosefilter={handleFilterClose}>
+        </c-favorites-flyout>
+    </template>
+    <footer class="footer-container">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <!-- You can replace this with your logo or any branding element -->
+                <img src="/path/to/logo.png" alt="Brand Logo" class="footer-logo-img" />
+            </div>
+            <div class="footer-links">
+                <ul>
+                    <li><a href="/privacy-policy" target="_blank">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service" target="_blank">Terms of Service</a></li>
+                    <li><a href="/contact-us" target="_blank">Contact Us</a></li>
+                    <li><a href="/about-us" target="_blank">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <ul>
+                    <li><a href="https://facebook.com"
+                            target="_blank"><img src="/path/to/facebook-icon.png" alt="Facebook" /></a></li>
+                    <li><a href="https://twitter.com"
+                            target="_blank"><img src="/path/to/twitter-icon.png" alt="Twitter" /></a></li>
+                    <li><a href="https://instagram.com"
+                            target="_blank"><img src="/path/to/instagram-icon.png" alt="Instagram" /></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Your Brand Name. All rights reserved.</p>
+        </div>
+    </footer>
+
+</template>
