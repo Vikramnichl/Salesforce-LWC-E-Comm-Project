@@ -1,0 +1,91 @@
+<template>
+    <div class="account-container">
+        <template if:false={isAdmin}>
+            <div class="left-block">
+                <c-my-account-left-sidebar></c-my-account-left-sidebar>
+            </div>
+                <div class="right-block">
+
+            <div class="fav-mini-block">
+                <h5 class="fav-header">Favorites</h5>
+                <div class="multi-fav-view">
+                    <div class="single-fav-view">
+                        <h6 class="mini-fav-name">Favorite 01</h6>
+                        <div class="mini-image-holder">
+                            <div class="mini-image-view">
+                                <img alt="" />
+                            </div>
+                            <div class="fav-remaining-count">
+                                <span class="fav-remaining-text">+3</span>
+                            </div>
+                        </div>
+                        <p class="mini-fav-date">
+                            last Update: Jan. 22, 2024 07:40 PM
+                        </p>
+                    </div>
+                    <div class="single-fav-view">
+                        <h6 class="mini-fav-name">Favorite 01</h6>
+                        <div class="mini-image-holder">
+                            <div class="mini-image-view">
+                                <img alt="" />
+                            </div>
+                            <div class="fav-remaining-count">
+                                <span class="fav-remaining-text">+3</span>
+                            </div>
+                        </div>
+                        <p class="mini-fav-date">
+                            last Update: Jan. 22, 2024 07:40 PM
+                        </p>
+                    </div>
+                    <div class="single-fav-view">
+                        <h6 class="mini-fav-name">Favorite 01</h6>
+                        <div class="mini-image-holder">
+                            <div class="mini-image-view">
+                                <img alt="" />
+                            </div>
+                            <div class="fav-remaining-count">
+                                <span class="fav-remaining-text">+3</span>
+                            </div>
+                        </div>
+                        <p class="mini-fav-date">
+                            last Update: Jan. 22, 2024 07:40 PM
+                        </p>
+                    </div>
+                    <div class="single-fav-view">
+                        <h6 class="mini-fav-name">Favorite 01</h6>
+                        <div class="mini-image-holder">
+                            <div class="mini-image-view">
+                                <img alt="" />
+                            </div>
+                            <div class="fav-remaining-count">
+                                <span class="fav-remaining-text">+3</span>
+                            </div>
+                        </div>
+                        <p class="mini-fav-date">
+                            last Update: Jan. 22, 2024 07:40 PM
+                        </p>
+                    </div>
+                </div>
+                <div class="fav-mini-footer">
+                    <a>View All</a>
+                </div>
+            </div>
+
+
+
+                <!-- Loading Spinner -->
+                <template if:true={showSpinner}>
+                    <div class="backdrop">
+                        <lightning-spinner class="spinshow" size="large" variant="brand" alternative-text="Loading"></lightning-spinner>
+                    </div>
+                </template>
+                </div>
+        </template>
+        <template if:true={isAdmin}>
+            <div class="slds-box">
+                <p>Admin account details not available.</p>
+            </div>
+        </template>
+
+    </div>
+</template>

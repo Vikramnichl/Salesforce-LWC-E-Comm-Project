@@ -1,0 +1,32 @@
+<template>
+<!-- User Carousel Starts -->
+<template if:true={sections}>
+    <!-- Existing FAQ display -->
+          <div class="user-carousel-container">
+                <div class="user-carousel-holder">
+                    <div class="user-header">
+                        <h4>people are asking</h4>
+                        <p>See all FAQs</p>
+                    </div>
+                    <template for:each={sections} for:item="section">
+                        <div key={section.id} class="accord-section">
+                            <button class="accordion" data-id={section.id} onclick={toggleSection}>
+                        <p>{section.title}</p>
+                        <span>
+                            <lightning-icon class="logo-arrow" icon-name=utility:chevrondown alternative-text="arrow"
+                                size="x-small"></lightning-icon>
+                        </span>
+                    </button>
+                            <div class="panel" if:true={section.isOpen}>
+                                <p class="panel-content">{section.content}</p>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+</template>
+<template if:false={sections}>
+    <p>No FAQs available for this product.</p>
+</template>
+            <!-- User Carousel Ends -->
+</template>

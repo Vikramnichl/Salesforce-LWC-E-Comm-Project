@@ -1,0 +1,186 @@
+<template>
+    <header data-f6-region class="custom-header">
+        <div class="top-bar">
+            <div class="locale">
+                <img src={usaFlag} class="flag flg-spacing">  USA / EN</div>
+        </div>
+        <div class="main-bar">
+            <div class="logo">
+                <a class="logo-home" href="/" title="YETI Home">
+                    <img class="logo-img" src={brandLogo} alt="YETI">
+                </a>
+            </div>
+
+                 <div class="header-icons">
+                    <div class="search">
+                        <img src={globalSearchIcon} alt="Search" onclick={openSearchModal}>
+                    </div>
+                    <div onclick={onCartClick}>
+                        <a href="/cart">
+                            <div class="cart-item-icon">
+                                <img src={bagIcon} alt="Cart Icon">
+                                <span class="cart-item-count">{productCount}</span>
+                            </div>
+                        </a>
+                    </div>
+                    <a href="#"> <img src={profileImage} alt="Profile" onclick={onMyAccountClick} style="height:50px"></a>
+                    <!-- <a href="#"> <img src={menuIcons} alt="Hamburger Menu"></a> -->
+                    <template if:false={isHBClick}>
+                        <a href="#"> <img src={hamburgerImage} alt="Hamburger"
+                                onclick={onhamburgerClick}></a>
+                    </template>
+                    <template if:true={isHBClick}>
+                        <div class="hb-close">
+                            <lightning-icon icon-name='utility:close' alternative-text='close' size='x-small'
+                                title='close' onclick={onMyHBClose} class="closeIconCstm"></lightning-icon>
+                        </div>
+                    </template>
+                </div>
+        </div>
+        <hr>
+        <nav class="nav">
+            <ul>
+                <template for:each={categories} for:item="category">
+                    <li key={category.categoryName} class="navbar" onclick={handleMegamenuClick}>
+                        <div class="tab-link">
+                            <template if:true={category.isShopByColorCategory}>
+                                <!-- Conditional check to display "Shop by Colour" based on buyer group -->
+                                <template if:true={isShopByColour}>
+                                    <!-- <a href="#" class="tab-link" data-id={category.categoryId}
+                                        onclick={handleCategoryClick} data-name={category.categoryName}>
+                                        Shop by Colour
+                                    </a> -->
+                                    <a class="tab-link" data-id={category.categoryId} 
+                                        onclick={handleBlockClick} data-name={category.categoryName}>
+                                        Shop by Colour
+                                    </a>
+                                </template>
+                                <template if:false={isShopByColour}>
+                                    <!-- <a href="#" class="tab-link" data-id={category.categoryId}
+                                        onclick={handleCategoryClick} data-name={category.categoryName}>
+                                        Shop by Color
+                                    </a> -->
+                                    <a class="tab-link" data-id={category.categoryId} 
+                                        onclick={handleBlockClick} data-name={category.categoryName}>
+                                        Shop by Color
+                                    </a>
+                                </template>
+                            </template>
+                            <!-- For all other categories, show the category name as it is -->
+                            <template if:false={category.isShopByColorCategory}>
+                                <a href="#" class="tab-link" data-id={category.categoryId} onclick={handleCategoryClick}
+                                    data-name={category.categoryName}>
+                                    {category.categoryName}
+                                </a>
+                            </template>
+                        </div>
+                        <!-- Render dropdown only if there are subcategories -->
+                        <!-- <template if:true={category.subCategories.length}> -->
+                        <div class="dropdown">
+                            <div class="inner-dropdown">
+                                <div class="slds-grid">
+                                    <!-- <template if:true={category.isButton}>
+                                            <div class="dropdown-column">
+                                                <button class="arrbutton" data-id={category.categoryId} onclick={handleChange}>NEW ARRIVAL</button>
+                                            </div>
+                                        </template> -->
+                                    <template for:each={category.subCategories} for:item="subCategory">
+                                        <div key={subCategory.subCategoryName} class="dropdown-column">
+                                            <h3>
+                                                <a href="#" data-id={subCategory.subCategoryId}
+                                                    data-name={subCategory.subCategoryName}
+                                                    onclick={handleSubCategoryClick}>{subCategory.subCategoryName}</a>
+                                            </h3>
+                                            <template for:each={subCategory.products} for:item="product">
+                                                <a style="text-transform: none !important;" key={product.Id} href="#"
+                                                    data-id={product.Id} onclick={handleProductClick}
+                                                    data-name={product.Name}>{product.Name}</a>
+                                            </template>
+                                            <a href="#" data-id={subCategory.subCategoryId}
+                                                data-name={subCategory.subCategoryName}
+                                                onclick={handleSubCategoryClick}>Shop All</a>
+                                        </div>
+                                    </template>
+                                    <!-- Show Shop by Color only for Drinkware category -->
+                                    <template if:true={category.isDrinkwareCategory}>
+                                        <!-- <div class="shop-color-drink">
+                                            <c-shop-by-color product-category-id={category.categoryId}
+                                                product-category-name={category.categoryName}></c-shop-by-color>
+                                        </div> -->
+                                    </template>
+                                    <template if:true={category.isShopByColorCategory}>
+                                        <!-- <div class="shop-color-cato">
+                                            <c-shop-by-color product-category-id={category.productCategoryId}
+                                                product-category-name={category.categoryName}></c-shop-by-color>
+                                        </div> -->
+                                    </template>
+                                </div>
+                                <template if:true={category.showSpotlight}>
+                                    <div class="spot-light-split">
+                                        <!-- <c-nav-spotlight buyer-group-id={category.buyerGroup}
+                                            product-category-id={category.categoryId}>
+                                        </c-nav-spotlight> -->
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                        <!-- </template> -->
+                    </li>
+                </template>
+            </ul>
+        </nav>
+    </header>
+
+    <template if:true={isVisible}>
+        <div class={sidebarClass}>
+            <div class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-right slds-is-open sliderCard slds-p-left_medium">
+                <div class="slds-panel__body">
+                    <div class="closeclass">
+                        <lightning-icon icon-name='utility:close' alternative-text='close' size='x-small'
+                            title='close' onclick={onMyAccountClose} class="closeIconCstm"></lightning-icon>
+                    </div>
+                    <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate heading5" title="Panel Header">
+                        ACCOUNT
+                    </h2>
+                    <p class="hoverable subClass" onclick={handleRedirect}>My Account</p>
+                    <br>
+                    <p class="hoverable subClass" onclick={handleRedirect}>My Orders</p>
+                    <br>
+                    <template if:true={isWholesale}>
+                    <p class="hoverable subClass" onclick={handleRedirect}>My Invoices</p>
+                    <br>
+                    </template>
+                    <p class="hoverable subClass" onclick={handleRedirect}>My Favorites</p>
+                    <br>
+                    <p class="hoverable subClass" onclick={handleSignOut}>Sign Out</p>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="mask"></div> -->
+    </template>
+    <template if:true={isHBVisible}>
+        <div class={sidebarHBClass}>
+            <div
+                class="slds-panel slds-size_medium slds-panel_docked slds-panel_docked-right slds-is-open sliderCard slds-p-left_medium">
+                <div class="slds-panel__body">
+
+                    <h2 class="slds-panel__header-title slds-text-heading_small slds-truncate heading5"
+                        title="Panel Header">
+                        RESOURCES
+                    </h2>
+                    <p class="hoverable subClass" onclick={handleFormClick}>Information and Forms</p>
+                    <!--onclick={handleFormClick}-->
+                    <br>
+                </div>
+            </div>
+        </div>
+        <div class="resource-mask"></div>
+    </template>
+    <template if:true={searchModal}>
+        <!-- <c-globalsearch onclosesearch={closeSearchModal}></c-globalsearch> -->
+    </template>
+    <!-- <c-cart-count-check oncartitemcountupdate={updateItemsCount}></c-cart-count-check> -->
+     <footer data-f6-region>
+        <slot name="footer"></slot>
+    </footer>
+</template>

@@ -1,0 +1,98 @@
+<template>
+    <div class="account-container">
+        <!-- Check if the user is not an admin -->
+        <template if:false={isAdmin}>
+            <div class="left-block">
+                <c-my-account-left-sidebar></c-my-account-left-sidebar>
+            </div>
+
+            <!-- Favorite Create Page Starts -->
+            <div class="right-block">
+                <div class="fav-create-view">
+                    <div class="fav-create-manage-edit">
+                        <div class="fav-create-manage-head">
+                            <h5>Add New Favorite</h5>
+                        </div>
+                    </div>
+                    <div class="fav-new-block">
+                        <!-- Favorite Name Input -->
+                        <div class="slds-form-element slds-m-bottom_x-large">
+                            <label class="slds-form-element__label title-fav" for="text-input-id-54">
+                                Favorite Name <span class="slds-required">*</span>
+                            </label>
+                            <div
+                                class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left fav-input-half">
+                                <input
+
+            type="text"
+            id="text-input-id-56"
+            class="slds-input"
+            value={favoriteName}
+            placeholder="Enter favorite name"
+            oninput={handleNameChange}
+            pattern="^\S(.*\S)?$"
+            title="Name cannot start or end with spaces and must have at least one non-space character."
+            maxlength="18"
+        />
+                                <div>
+                                     <template if:true={isFavListNameError}>
+                                        <p class="slds-text-color_error">{errorMessage}</p>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Description Input -->
+                        <div class="slds-form-element">
+                            <label class="slds-form-element__label title-fav" for="text-input-id-55">
+                                Description (optional)
+                            </label>
+                            <div
+                                class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left fav-input-full">
+                                <input
+                                    type="text"
+                                    id="text-input-id-55"
+                                    placeholder="Enter description (optional)"
+                                    class="slds-input"
+                                    value={favoriteDescription}
+                                    onchange={handleDescriptionChange}
+                                     maxlength="255"
+                                />
+                            </div>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="fav-footer-block">
+                            <button
+                                class="slds-button slds-button_brand fav-dark"
+                                onclick={handleSave}
+                                disabled={isSaving}>
+                                Save
+                            </button>
+                            <button
+                                class="slds-button slds-button_neutral fav-lite"
+                                onclick={handleCancel}>
+                                Cancel
+                            </button>
+                        </div>
+
+                        <!-- Spinner (optional) -->
+                        <template if:true={isSaving}>
+                            <div class="slds-align_absolute-center">
+                                <lightning-spinner alternative-text="Saving..."></lightning-spinner>
+                            </div>
+                        </template>
+                    </div>
+                </div>
+            </div>
+            <!-- Favorite Create Page Ends -->
+        </template>
+
+        <!-- Admin View -->
+        <template if:true={isAdmin}>
+            <div class="slds-box">
+                <p>Admin account details not available.</p>
+            </div>
+        </template>
+    </div>
+</template>

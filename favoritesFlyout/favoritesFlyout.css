@@ -1,0 +1,277 @@
+/* Favorite Filter Flyout Starts */
+
+/* .plp-image-top {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 15px;
+    padding: 0px 20px 0 15px;
+}
+
+.promotion {
+    display: inline-flex;
+    padding: 7px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 6px;
+    border: 1px solid #002B45;
+    color: #002B45;
+    text-align: center;
+    font-family: 'St1Medium';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 16px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+
+.heart {
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    border-radius: 25px;
+    align-self: center;
+    cursor: pointer;
+} */
+
+.closeIconCstm {
+    padding: 6px;
+    border-radius: 16px;
+    box-shadow: 0px 8px 14px 0px #0000001A;
+    --sds-c-icon-color-foreground-default: #002B45;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease forwards;
+    z-index: 9100;
+    width: 480px;
+    overflow-y: auto;
+    height: calc(100% - 95px);
+    position: fixed;
+    left: 0;
+    top: 95px;
+}
+
+.slide-out {
+    animation: slideOut 0.5s ease forwards;
+    z-index: 9100;
+    width: 480px;
+    overflow-y: auto;
+    height: calc(100% - 95px);
+    position: fixed;
+    left: 0;
+    top: 95px;
+}
+
+.fav-filter-mask {
+    position: fixed;
+    left: 0;
+    top: 95px;
+    width: 100%;
+    height: calc(100% - 95px);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9000;
+}
+
+.panel-text {
+    padding: 0px;
+}
+
+.panel-header {
+    font-family: 'St1Medium';
+    font-size: 26px;
+    font-weight: 900;
+    color: #002B45;
+    line-height: 28px;
+    letter-spacing: 1.3px;
+    text-align: left;
+    padding-left: 2rem;
+    margin-top: 0px;
+    text-transform: uppercase;
+}
+
+.closeclass {
+    text-align: right;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.slds-checkbox__label {
+    cursor: pointer;
+}
+
+.slds-checkbox [type=checkbox]:checked+.slds-checkbox__label .slds-checkbox_faux {
+    background-color: #002B45;
+    border-color: #002B45;
+}
+
+.slds-checkbox [type=checkbox]:checked+.slds-checkbox__label .slds-checkbox_faux:after {
+    height: 0.35rem;
+    width: 0.6rem;
+    border-color: #FFFFFF;
+    top: 40%;
+}
+
+.slds-checkbox__label {
+    cursor: pointer;
+}
+
+.check-fav-box {
+    color: #002B45;
+    font-family: "URWDIN";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0.08px;
+}
+
+.filter-title-fav {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+}
+.title-fav {
+    color: #002B45;
+    font-family: 'St1Medium';
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+
+.fav-checkbox-list {
+    padding: 1rem 2rem 0;
+    height: 250px;
+    overflow: auto;
+}
+
+.fav-filter-create {
+    padding: 0px 25px 25px;
+}
+
+.fav-filter-footer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    position: absolute;
+    bottom: 0;
+    margin: 20px 0;
+}
+
+.fav-filter-input input{
+    display: flex;
+    padding: 20px 15px;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px solid #DDD;
+    background: #FFF;
+    height: 50px;
+    margin-bottom: 10px;
+    color: #565656;
+}
+
+.fav-filter-dark {
+    display: flex;
+    width: 210px;
+    height: 50px;
+    padding: 16px 76px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #002B45;
+    color: #FFF;
+    text-align: center;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+
+}
+
+.fav-filter-lite {
+    display: flex;
+    width: 210px;
+    height: 50px;
+    padding: 16px 80px;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 2px solid #002B45;
+    color:#002B45;
+    text-align: center;
+    font-family: 'St1Medium';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+.fav-filter-line{
+    margin: 20px 20px 20px;
+}
+
+/* Favorite Filter Flyout Ends */
+.spinner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full screen width */
+    height: 100%; /* Full screen height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.5); /* Semi-transparent background for content visibility */
+    z-index: 10; /* Ensure spinner stays above content but below critical elements */
+}
+
+.content-container {
+    position: relative;
+    z-index: 0; /* Ensure the content stays below the spinner */
+}
+
+.slds-button:disabled {
+    background-color: #d8d8d8; /* Light grey background */
+    color: #221f1f; /* Lighter text color */
+    border-color: #d8d8d8; /* Match border to the background */
+    cursor: not-allowed; /* Change cursor to show it's not clickable */
+}
