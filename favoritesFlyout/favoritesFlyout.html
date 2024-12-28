@@ -1,0 +1,117 @@
+<template>
+    <template if:true={isFilterOpen}>
+        <div class={sidebarClass}>
+            <div class="slds-panel slds-panel_docked slds-panel_docked-left slds-is-open sliderCard">
+                <div class="slds-panel__body">
+                    <!-- Spinner displayed during saving -->
+                    <div >
+                        <template if:true={isSaving}>
+                            <!-- <div class="spinner-overlay"> -->
+                                <lightning-spinner alternative-text="Saving..." size="medium"></lightning-spinner>
+                            <!-- </div> -->
+                        </template>
+                        <!-- Main Content displayed when not saving -->
+                        <!-- <template if:false={isSaving}> -->
+                        <div class={contentClass}>
+                            <div class="panel-text">
+                                <div class="closeclass">
+                                    <lightning-icon icon-name="utility:close" alternative-text="close" size="small"
+                                        title="close" onclick={CloseFavFilter} class="closeIconCstm">
+                                    </lightning-icon>
+                                </div>
+                                <h2 class="panel-header" title="Panel Header">Add to Favorites</h2>
+                            </div>
+
+                            <!-- Favorite Lists -->
+                            <template if:true={favoriteLists}>
+                                <ul class="fav-checkbox-list">
+                                    <template for:each={favoriteLists} for:item="list">
+                                        <li key={list.id}>
+                                            <div class="slds-form-element">
+                                                <div class="slds-form-element__control">
+                                                    <div class="slds-checkbox check-fav-box">
+                                                        <input type="checkbox" data-id={list.id} id={list.id} value={list.id}
+                                                            checked={list.isChecked} onchange={handleCheckboxChange} />
+                                                        <label class="slds-checkbox__label" for={list.id}>
+                                                            <span class="slds-checkbox_faux"></span>
+                                                            <span class="slds-form-element__label check-title-box">{list.name}</span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </template>
+                                </ul>
+                            </template>
+
+                            <!-- Error Message -->
+                            <template if:true={error}>
+                                <p class="slds-text-color_error">Error fetching favorite lists: {error.body.message}</p>
+                            </template>
+
+                            <hr class="fav-filter-line">
+
+                            <!-- Create Favorites Section -->
+                            <div class="fav-filter-create">
+                                <div class="slds-form-element slds-m-bottom_x-large">
+                                    <label
+                                    class="slds-form-element__label title-fav"
+                                    for="text-input-id-56">
+                                    Create Favorites
+                                </label>
+                                    <div
+                                        class="slds-form-element__control slds-input-has-icon slds-input-has-icon_left fav-filter-input">
+                                       <input
+
+                                         type="text"
+                                           id="text-input-id-56"
+                                          class="slds-input"
+                                             value={favoriteName}
+                                              placeholder="Enter favorite name"
+                                                 oninput={handleNameChange}
+                                                 pattern="^\S(.*\S)?$"
+                                                 maxlength="18"
+                                         />
+                                      <template if:true={isFavListNameError}>
+                                        <p class="slds-text-color_error">{errorMessage}</p>
+                                    </template>
+                                        <input
+                                        type="text"
+                                        id="text-input-id-72"
+                                        placeholder="Description (optional)"
+                                        value={favoriteDescription}
+                                        onchange={handleDescriptionChange}
+                                        class="slds-input" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Footer Buttons -->
+                            <div class="fav-filter-footer">
+                                <button
+                                class="slds-button fav-filter-lite"
+                                onclick={clearSelection}>
+                                CLEAR
+                            </button>
+
+                                <template if:true={isClearing}>
+                                    <lightning-spinner alternative-text="Clearing..." size="small"></lightning-spinner>
+                                </template>
+
+                                <button
+                                class="slds-button fav-filter-dark"
+                                onclick={handleSave}
+                                disabled={isSaveDisabled}>
+                                SAVE
+                            </button>
+
+                            </div>
+                        </div>
+                        <!-- </template> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fav-filter-mask"></div>
+    </template>
+</template>

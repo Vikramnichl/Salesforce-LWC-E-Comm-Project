@@ -1,0 +1,93 @@
+.custom-toast {
+  position: fixed;
+  top: 9rem;
+  left: 43%;
+  /* transform: translateX(-50%); */
+  z-index: 1000;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: #ffffff;
+  width: auto;
+  height: 64px;
+  /* Default color, you can change this dynamically via inline styles if needed */
+}
+
+.icon-size {
+  display: flex;
+  width: auto;
+  padding-top: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 40px;
+}
+
+.message {
+  color: #FFF;
+  font-family: 'St1Medium';
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 20px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.checker-icon {
+  --slds-c-icon-color-foreground-default: #002B45;
+}
+
+.approval-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  text-align: center;
+  background-color: white;
+  padding: 3px;
+}
+
+.slds-icon {
+  fill: #002B45;
+}
+
+.slds-theme_success {
+  background-color: #002B45;
+  /* Green for success */
+}
+
+.slds-theme_success {
+  background-color: #002B45;
+  ;
+  /* Custom green color */
+}
+
+.slds-theme_warning {
+  background-color: #f4b400;
+  /* Custom yellow color */
+}
+
+.slds-theme_error {
+  background-color: #d0021b;
+  /* Custom red color */
+}
+
+.icon-size img {
+  max-width: 100%;
+  height: 20px;
+  padding-right: 10px;
+}
+
+.icon-size .slds-icon-action-approval {
+  background-color: #ffffff;
+}
+
+.slds-icon.slds-icon_small {
+  fill: green !important;
+}
+
+
+.toaster-view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}

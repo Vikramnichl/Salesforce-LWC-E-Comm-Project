@@ -1,0 +1,45 @@
+<template>
+  <div class="profile-holder">
+       <div class="profile-pic">
+          <img src="" alt="">
+          <img class="pro-edit" src={profileEditIcon} alt="Profile Edit Icon">
+       </div>
+       <div class="profile-name">
+          <!-- <h3>{contact.FirstName} {contact.LastName}</h3> -->
+          <p>Joined in 2022</p>
+       </div>
+    </div>
+    <div class="side-menu-holder">
+       <ul class="primary-list">
+          <!-- <li><a>My Account</a></li> -->
+          <li><a class={ordersummary} onclick={navigateToOrdersummary}>My Account</a></li>
+          <li><a class={ordersClass} onclick={navigateToOrders}>Orders</a></li>
+          <template if:true={isWholesale}>
+             <li><a class={InvoiceClass} onclick={navigateToInvoices}>Invoices</a></li>
+          </template>
+            <li><a class={myFavorite} onclick={navigateToFavorite}>My Favorites</a></li>
+          <li><a class={myAccountClass} onclick={navigateToAccount}>Personal Info</a></li>
+       </ul>
+       <ul class="secondary-list">
+         <template if:true={isWholesale}>
+            <li><a>YETI FAQ</a></li>
+           </template>
+           <template if:false={isWholesale}>
+            <li><a >YETI FAQ</a></li>
+           </template>
+          
+         <template if:true={isWholesale}>
+            <template if:true={userTypeCA}>
+               <li><a>Customer Support</a></li>
+            </template>
+            <template if:false={userTypeCA}>
+               <li><a>Customer Support</a></li>
+            </template>
+        </template>
+        <template if:false={isWholesale}>
+            <li><a >Customer Support</a></li>
+        </template>
+          <li><a onclick={handleSignOut}>Sign Out</a></li>
+       </ul>
+    </div>
+</template>
