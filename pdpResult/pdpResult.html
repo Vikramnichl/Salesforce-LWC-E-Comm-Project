@@ -1,0 +1,29 @@
+<template>
+    <div class="product-detail-container">
+        <!-- Image Section -->
+        <div class="product-image-section">
+            <img src={product.Image_Url__c} alt={product.Name} class="product-image" />
+        </div>
+
+        <!-- Details Section -->
+        <div class="product-details-section">
+            <h1 class="product-title">{product.Name}</h1>
+            <p class="product-description">{product.Description__c}</p>
+
+            <div class="price-section">
+                <span class="original-price" if:true={product.Original_Price__c}>
+                    ${product.Original_Price__c}
+                </span>
+                <span class="discounted-price" if:true={product.Discounted_Price__c}>
+                    ${product.Discounted_Price__c}
+                </span>
+            </div>
+
+            <div class="rating-section">
+                <span class="rating-stars">{product.Rating__c} ★</span>
+                <span class="review-count">({product.Review_Count__c} Reviews)</span>
+            </div>
+        </div>
+    </div>
+      <c-faq-section product-id={productId}></c-faq-section>
+</template>
